@@ -1,0 +1,50 @@
+[
+  {
+    "shop_id": "U001",
+    "name": "Neethi medicals",
+    "contact": "0470-3208533",
+    "discount": "50%",
+    "category": "discount",
+    "link": "https://maps.app.goo.gl/aSVuEAxFnkLf7C3q8?g_st=iw"
+  },
+  {
+    "shop_id": "U002",
+    "name": "Malavika medicals",
+    "contact": "094972 03427",
+    "discount": "40%",
+    "category": "discount",
+    "link": "https://maps.app.goo.gl/JBJCETNhJBtuSPM47?g_st=iw"
+  },
+  {
+    "shop_id": "U003",
+    "name": "Mohanam medical",
+    "contact": "+919447501782",
+    "discount": "5%",
+    "category": "normal",
+    "link": "https://maps.app.goo.gl/EsfkcpQyoy73y7aj7?g_st=iw"
+  },
+  {
+    "shop_id": "U004",
+    "name": "Gg medicals",
+    "contact": "0470-2627458",
+    "discount": "5%",
+    "category": "normal",
+    "link": "https://maps.app.goo.gl/zDLMF7qg5jBinXwo7?g_st=iw"
+  },
+  {
+    "shop_id": "U005",
+    "name": "Attingal medicals",
+    "contact": "+919447033933",
+    "discount": "5%",
+    "category": "normal",
+    "link": "https://maps.app.goo.gl/EsjUDDsPjZzN97BAA?g_st=iw"
+  },
+  {
+    "shop_id": "U006",
+    "name": "Asharaf medicals",
+    "contact": "+919447716447",
+    "discount": "5%",
+    "category": "normal",
+    "link": "https://maps.app.goo.gl/EsjUDDsPjZzN97BAA?g_st=iw"
+  }
+]

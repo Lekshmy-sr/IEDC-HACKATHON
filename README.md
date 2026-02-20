@@ -1,1 +1,0 @@
-# IEDC-HACKATHON
