@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediScan - Medicine Utility App</title>
+    <meta name="description"
+        content="Identify medicines via OCR, search details, find pharmacies, and manage schedules.">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Tesseract.js for OCR -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <h1>MediScan</h1>
+        <ul class="nav-links">
+            <li><button id="nav-details" class="active">Details</button></li>
+            <li><button id="nav-locations">Locations</button></li>
+            <li><button id="nav-schedule">Schedule</button></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <!-- Details Page -->
+        <section id="page-details" class="page active">
+            <h2 class="section-title">Identify & View Medicine Details</h2>
+
+            <div class="card">
+                <h3>Scan Medicine</h3>
+                <div id="camera-container" style="display: none;">
+                    <video id="video" autoplay playsinline></video>
+                    <div class="scan-overlay"></div>
+                </div>
+                <div class="btn-group">
+                    <button id="open-camera" class="btn btn-primary">Open Camera</button>
+                    <button id="capture" class="btn btn-accent" style="display: none;">Capture & Scan</button>
+                    <button id="close-camera" class="btn btn-primary" style="display: none;">Close Camera</button>
+                </div>
+                <canvas id="canvas" style="display: none;"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Manual Search</h3>
+                <div class="form-group" style="display: flex; gap: 10px;">
+                    <input type="text" id="manual-search" placeholder="Type medicine name or composition..."
+                        style="flex: 1;">
+                    <button id="search-btn" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+
+            <div id="medicine-results" class="results-grid">
+                <!-- Medicine cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- Locations Page -->
+        <section id="page-locations" class="page">
+            <h2 class="section-title">Nearby Pharmacies</h2>
+
+            <div id="discount-shops-section">
+                <h3>Pharmacies with Discounts</h3>
+                <div id="discount-shops" class="results-grid"></div>
+            </div>
+
+            <div id="normal-shops-section" style="margin-top: 30px;">
+                <h3>Nearby Pharmacies</h3>
+                <div id="normal-shops" class="results-grid"></div>
+            </div>
+        </section>
+
+        <!-- Schedule Page -->
+        <section id="page-schedule" class="page">
+            <h2 class="section-title">Medicine Intake Schedule</h2>
+
+            <div class="card">
+                <h3>Add New Schedule</h3>
+                <form id="schedule-form">
+                    <div class="form-group">
+                        <label>Medicine Name</label>
+                        <input type="text" id="sched-name" required>
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Times per day</label>
+                            <input type="number" id="sched-times" min="1" max="5" value="1" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Duration (days)</label>
+                            <input type="number" id="sched-duration" min="1" value="7" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Slots</label>
+                        <div style="display: flex; gap: 10px;">
+                            <label><input type="checkbox" name="time-slot" value="morning"> Morning</label>
+                            <label><input type="checkbox" name="time-slot" value="noon"> Noon</label>
+                            <label><input type="checkbox" name="time-slot" value="night"> Night</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Food Timing</label>
+                        <select id="sched-food">
+                            <option value="after_food">After Food</option>
+                            <option value="before_food">Before Food</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Schedule</button>
+                </form>
+            </div>
+
+            <div id="schedule-cards" class="results-grid">
+                <!-- Schedule cards injected here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Medicine Detail Modal -->
+    <div id="medicine-modal" class="modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 500px; width: 90%;">
+            <h2 id="modal-name"></h2>
+            <p id="modal-details"></p>
+            <button class="btn btn-primary"
+                onclick="document.getElementById('medicine-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
